@@ -1,0 +1,16 @@
+# Additional completion definitions for Zsh.
+zsh-users/zsh-completions
+# Fish-like fast/unobtrusive autosuggestions for zsh. It suggests commands as you type based on history and completions.
+zsh-users/zsh-autosuggestions
+
+# important! keep as last entries
+mafredri/zsh-async
+# Pretty, minimal and fast ZSH prompt
+#denysdovhan/spaceship-prompt
+#sindresorhus/pure
+# Feature rich syntax highlighting for Zsh. (pretty colors)
+zdharma/fast-syntax-highlighting
+# History search feature, where you can type in any part of any command from history and then press chosen keys, such as the UP and DOWN arrows, to cycle through matches.
+zsh-users/zsh-history-substring-search
+
+agkozak/zsh-z

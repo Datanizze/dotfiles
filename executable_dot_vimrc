@@ -1,0 +1,40 @@
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+
+call plug#begin('~/.vim/plugged')
+
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'tpope/vim-sensible'
+Plug 'StanAngeloff/php.vim'
+
+Plug 'rayburgemeestre/phpfolding.vim'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tjammer/blayu.vim'
+Plug 'junegunn/seoul256.vim'
+Plug 'tpope/vim-git'
+
+" Initialize plugin system
+call plug#end()
+
+
+if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  autocmd VimEnter * PlugInstall
+endif
+
+
+set t_Co=256
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+set list
+set number
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+
+
+colorscheme seoul256
