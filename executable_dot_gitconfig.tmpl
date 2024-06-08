@@ -1,0 +1,46 @@
+[core]
+  pager = delta
+  eol = lf
+  autocrlf = input
+
+[alias]
+  co = checkout
+  br = branch
+  ci = commit
+  st = status
+  wip = "!git add --all; git ci -m WIP"
+  unwip = "!git reset HEAD~1"
+  recent-simple = "!git for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)'"
+  recent = "!r() { count=$1; git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' --color=always --count=${count:=10} | column -ts'|';}; r"
+
+[user]
+  name = Johan Liljegren
+  email = johan@liljegren.io
+
+[push]
+  default = current
+
+[pull]
+  rebase = true
+
+[init]
+  defaultBranch = main
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  line-numbers = true
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
+
+[diff "hidden"]
+     command = true
+
+[core]
+    attributesfile = ~/.gitattributes
