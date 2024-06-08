@@ -22,7 +22,6 @@ packages:
       - "ripgrep"
       - "tig"
       - "tmux"
-      - "vim"
       - "wget"
       - "yt-dlp"
       - "zoxide"

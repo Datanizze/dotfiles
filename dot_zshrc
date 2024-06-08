@@ -56,3 +56,70 @@ zstyle ':completion:*:manuals.(^1*)' insert-sections true
 zstyle -e ':completion:*:*:ssh:*:my-accounts' users-hosts \
   '[[ -f ${HOME}/.ssh/config && ${key} == hosts ]] && key=my_hosts reply=()'
 
+
+# set default editors (e.g. for what to use when running `git commit`)
+export EDITOR="nvim"
+export VISUAL="nvim"
+
+if command -v fzf &> /dev/null
+then
+  source <(fzf --zsh)
+fi
+
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+setopt share_history
+
+
+# enables `cd` without `cd`, i.e. `folder/to/go/to` is the same as `cd folder/to/go/to`
+setopt autocd
+
+# set this to not get git in swedish (main reason)
+export LANG="en_US.UTF-8"
+
+export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/bin:$PATH"
+
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+
+# use eza instead of ls
+if command -v eza &> /dev/null
+then
+  alias l="eza -1"
+  alias ls="eza"
+  alias ll="eza -al"
+fi
+
+
+# use bat instead of cat
+if command -v bat &> /dev/null
+then
+  alias cat="bat"
+fi
+
+# use zoxide instead of cd
+if command -v zoxide &> /dev/null
+then
+  eval "$(zoxide init zsh)"
+fi
+
+
+if command -v nvim &> /dev/null
+then
+  alias vi=nvim
+  alias vim=nvim
+fi
+
+
+if command -v fnm &> /dev/null
+then
+  eval "$(fnm env)"
+fi
+
+alias gs="git status"
+alias gc="git commit"
+
+[ -s "$HOME/.env" ] && . "$HOME/.env"
