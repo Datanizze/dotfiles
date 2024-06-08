@@ -4,7 +4,7 @@
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-chezmoi init --aply --ssh Datanizze
+chezmoi init --apply --ssh Datanizze
 ```
 
 ## Links
