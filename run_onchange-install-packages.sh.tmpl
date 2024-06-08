@@ -22,7 +22,7 @@ brew {{ . | quote }}
 {{ range .packages.darwin.casks -}}
 cask {{ . | quote }}
 {{ end -}}
-{{ range .packages.darwin.casks -}}
+{{ range .packages.darwin.vscode -}}
 vscode {{ . | quote }}
 {{ end -}}
 EOF
