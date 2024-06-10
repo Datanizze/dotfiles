@@ -2,59 +2,25 @@
 autoload -Uz compinit
 compinit
 
+if command -v brew &> /dev/null 
+then
+  # If you're using macOS, you'll want this enabled
+  eval "$(brew shellenv)"
+fi
+
 source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 antidote load
 
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh)"
+  eval "$(oh-my-posh init zsh --config $HOME/.posh.omp.toml)"
 fi
 
-# enable interactive selection in tab auto complete
-# stolen from https://github.com/zimfw/zimfw/blob/ab41c4484d3f3734a85a575e8d496406313ae274/modules/completion/init.zsh#L45
-zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*:matches' group yes
-zstyle ':completion:*:options' description yes
-zstyle ':completion:*:options' auto-description '%d'
-zstyle ':completion:*:corrections' format '%F{green}-- %d (errors: %e) --%f'
-zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
-zstyle ':completion:*:messages' format '%F{purple}-- %d --%f'
-zstyle ':completion:*:warnings' format '%F{red}-- no matches found --%f'
-zstyle ':completion:*' format '%F{yellow}-- %d --%f'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' '+r:|?=**'
-
-
-# Directories
-if (( ! ${+LS_COLORS} )); then
-  # Locally use same LS_COLORS definition from utility module, in case it was not set
-  local LS_COLORS='di=1;34:ln=35:so=32:pi=33:ex=31:bd=1;36:cd=1;33:su=30;41:sg=30;46:tw=30;42:ow=30;43'
-fi
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
-zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
-zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'expand'
-zstyle ':completion:*' squeeze-slashes true
-
-# enable caching
-zstyle ':completion::complete:*' use-cache on
-zstyle ':completion::complete:*' cache-path "${ZDOTDIR:-${HOME}}/.zcompcache"
-
-# ignore useless commands and functions
-zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec)|prompt_*)'
-
-# completion sorting
-zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
-
-# Man
-zstyle ':completion:*:manuals' separate-sections true
-zstyle ':completion:*:manuals.(^1*)' insert-sections true
-
-
-# If the _my_hosts function is defined, it will be called to add the ssh hosts
-# completion, otherwise _ssh_hosts will fall through and read the ~/.ssh/config
-zstyle -e ':completion:*:*:ssh:*:my-accounts' users-hosts \
-  '[[ -f ${HOME}/.ssh/config && ${key} == hosts ]] && key=my_hosts reply=()'
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 
 # set default editors (e.g. for what to use when running `git commit`)
@@ -69,8 +35,14 @@ fi
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
+HISTDUP=erase
 setopt appendhistory
-setopt share_history
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
 
 
 # enables `cd` without `cd`, i.e. `folder/to/go/to` is the same as `cd folder/to/go/to`
@@ -103,7 +75,7 @@ fi
 # use zoxide instead of cd
 if command -v zoxide &> /dev/null
 then
-  eval "$(zoxide init zsh)"
+  eval "$(zoxide init --cmd cd zsh)"
 fi
 
 
