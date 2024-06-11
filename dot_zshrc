@@ -2,7 +2,7 @@
 autoload -Uz compinit
 compinit
 
-if [ -f $HOME/.zshenv ]; then
+if [ -f $HOME/.zenv ]; then
   source $HOME/.zenv
 fi
 
