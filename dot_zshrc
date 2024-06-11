@@ -2,6 +2,10 @@
 autoload -Uz compinit
 compinit
 
+if [ -f $HOME/.zshenv ]; then
+  source $HOME/.zenv
+fi
+
 if command -v brew &> /dev/null 
 then
   # If you're using macOS, you'll want this enabled
@@ -22,7 +26,6 @@ fi
 # Completion styling
 # zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' '+r:|?=**'
->>>>>>> 6779bab (uew then?)
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
