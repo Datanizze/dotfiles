@@ -8,6 +8,14 @@ brew install chezmoi age
 chezmoi init --apply Datanizze
 ```
 
+## change default shell to zsh
+
+NOTE: make sure brew is loaded so you get the correct zsh path
+
+```bash
+echo $(which zsh) | sudo tee -a /etc/shells
+chsh -s $(which zsh)
+```
 ## Links
 
 - [install a nerd font](https://ohmyposh.dev/docs/installation/fonts) (automatically handled on Mac)
