@@ -34,4 +34,4 @@ chsh -s $(which zsh)
 
 ## other crap
 Q: `/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)`
-A: `locale-gen en_US.UTF-8`
+A: `sudo locale-gen en_US.UTF-8`
