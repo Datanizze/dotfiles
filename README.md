@@ -8,6 +8,14 @@ brew install gcc chezmoi age
 chezmoi init --apply Datanizze
 ```
 
+## Ubuntu(?) gotchas (WSL)
+
+brew installs gcc by default but that don't matter if build-essential isn't installed.
+
+```bash
+sudo apt install -y build-essential curl git
+```
+
 ## change default shell to zsh
 
 NOTE: make sure brew is loaded so you get the correct zsh path
