@@ -31,3 +31,7 @@ chsh -s $(which zsh)
 - [use posh](https://ohmyposh.dev/docs/installation/prompt)
 - [one shot chezmoi setup](https://www.chezmoi.io/user-guide/daily-operations/#install-chezmoi-and-your-dotfiles-on-a-new-machine-with-a-single-command)
   - `sh -c "$(curl -fsLS get.chezmoi.io)" -- init --one-shot Datanizze`
+
+## other crap
+Q: `/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)`
+A: `locale-gen en_US.UTF-8`
