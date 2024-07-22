@@ -17,6 +17,7 @@ packages:
       - "git"
       - "htop"
       - "jandedobbeleer/oh-my-posh/oh-my-posh"
+      - "lazygit"
       - "ncdu"
       - "neovim"
       - "nnn"
