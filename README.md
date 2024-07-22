@@ -13,6 +13,7 @@ chezmoi init --apply Datanizze
 brew installs gcc by default but that don't matter if build-essential isn't installed.
 
 ```bash
+sudo apt update
 sudo apt install -y build-essential curl git
 ```
 
