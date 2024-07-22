@@ -3,7 +3,17 @@ autoload -Uz compinit
 compinit
 
 if [ -f $HOME/.zenv ]; then
+  echo "use .zshenv instead of .zenv"
   source $HOME/.zenv
+fi
+
+if [ -f $HOME/.zshenv ]; then
+  source $HOME/.zshenv
+fi
+
+if [ -d /home/linuxbrew/.linuxbrew/bin ]; then
+  export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+  export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
 fi
 
 if command -v brew &> /dev/null 
