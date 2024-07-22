@@ -11,9 +11,8 @@ if [ -f $HOME/.zshenv ]; then
   source $HOME/.zshenv
 fi
 
-if [ -d /home/linuxbrew/.linuxbrew/bin ]; then
-  export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-  export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
+if [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 if command -v brew &> /dev/null 
