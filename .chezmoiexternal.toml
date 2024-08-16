@@ -1,4 +1,4 @@
 [".config/nvim"]
 type = "git-repo"
-url = "https://github.com/Datanizze/kickstart.nvim.git"
+url = "https://github.com/LazyVim/starter"
 refreshPeriod = "168h"
